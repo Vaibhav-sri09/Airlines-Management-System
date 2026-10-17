@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passengers - AeroDB</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="logo-area">
+            <h1>✈️ AeroDB</h1>
+            <p>Airport Management System</p>
+        </div>
+        <nav>
+            <a href="index.html">Dashboard</a>
+            <a href="arrivals.html">Arrivals</a>
+            <a href="departures.html">Departures</a>
+            <a href="jetfuel.html">Jet Fuel</a>
+            <a href="maintenance.html">Runway</a>
+            <a href="passengers.html" class="active">Passengers</a>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <!-- Form Card -->
+        <section class="card">
+            <h2>Add Passenger to Manifest</h2>
+            <form id="passengers-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="pax-id">Passenger ID</label>
+                        <input type="text" id="pax-id" name="p_id" placeholder="e.g. PAX-101" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pax-name">Passenger Name</label>
+                        <input type="text" id="pax-name" name="p_name" placeholder="e.g. Rahul Sharma" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pax-gender">Gender</label>
+                        <select id="pax-gender" name="p_gender" required>
+                            <option value="">-- Select Gender --</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="pax-flight">Flight Number</label>
+                        <input type="text" id="pax-flight" name="p_flight_no" placeholder="e.g. AI-101" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pax-age">Age</label>
+                        <input type="number" id="pax-age" name="p_age" min="1" max="120" placeholder="e.g. 28" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pax-nationality">Nationality</label>
+                        <input type="text" id="pax-nationality" name="p_nationality" placeholder="e.g. Indian" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">Add Passenger Record</button>
+            </form>
+        </section>
+
+        <!-- Table Card -->
+        <section class="card">
+            <h2>Registered Passengers</h2>
+            <table id="passengers-table">
+                <thead>
+                    <tr>
+                        <th>Passenger ID</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Flight No</th>
+                        <th>Age</th>
+                        <th>Nationality</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>PAX-001</strong></td>
+                        <td>Rahul Sharma</td>
+                        <td>Male</td>
+                        <td>AI-101</td>
+                        <td>29</td>
+                        <td>Indian</td>
+                        <td><button type="button" class="btn-delete" onclick="deleteRow(this)">Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td><strong>PAX-002</strong></td>
+                        <td>Priya Patel</td>
+                        <td>Female</td>
+                        <td>6E-204</td>
+                        <td>34</td>
+                        <td>Indian</td>
+                        <td><button type="button" class="btn-delete" onclick="deleteRow(this)">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>AeroDB Airport Management System | College Web Development Project</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

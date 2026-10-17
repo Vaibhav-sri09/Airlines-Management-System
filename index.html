@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AeroDB - Airport Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="logo-area">
+            <h1>✈️ AeroDB</h1>
+            <p>Airport Management System</p>
+        </div>
+        <nav>
+            <a href="index.html" class="active">Dashboard</a>
+            <a href="arrivals.html">Arrivals</a>
+            <a href="departures.html">Departures</a>
+            <a href="jetfuel.html">Jet Fuel</a>
+            <a href="maintenance.html">Runway</a>
+            <a href="passengers.html">Passengers</a>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container">
+
+        <!-- Welcome Card -->
+        <section class="card">
+            <h2>Welcome to AeroDB Airport Management System</h2>
+            <p>This system allows airport staff to manage flight arrivals, departures, aircraft refueling, runway maintenance, and passenger manifests from one clean interface.</p>
+        </section>
+
+        <!-- 5 Module Cards -->
+        <h2>Management Modules</h2>
+        <div class="dashboard-grid">
+
+            <div class="module-box">
+                <h3>🛬 Arrivals</h3>
+                <p>Track incoming flights, origin cities, arrival times, assigned gates, and flight status.</p>
+                <a href="arrivals.html">View Arrivals &rarr;</a>
+            </div>
+
+            <div class="module-box">
+                <h3>🛫 Departures</h3>
+                <p>Monitor outbound flights, destinations, departure times, boarding gates, and status updates.</p>
+                <a href="departures.html">View Departures &rarr;</a>
+            </div>
+
+            <div class="module-box">
+                <h3>⛽ Jet Fuel</h3>
+                <p>Log fuel quantity in litres, unit price, and automatically calculate total refueling cost.</p>
+                <a href="jetfuel.html">View Jet Fuel &rarr;</a>
+            </div>
+
+            <div class="module-box">
+                <h3>🚧 Runway Maintenance</h3>
+                <p>Track runway inspections, maintenance dates, surface repairs, and operational readiness.</p>
+                <a href="maintenance.html">View Runway &rarr;</a>
+            </div>
+
+            <div class="module-box">
+                <h3>👥 Passengers</h3>
+                <p>Access passenger manifests, seat flight assignments, age, and passenger nationality.</p>
+                <a href="passengers.html">View Passengers &rarr;</a>
+            </div>
+
+        </div>
+
+        <br>
+
+        <!-- Quick Terminal Snapshot Table -->
+        <section class="card">
+            <h2>Today's Flight Snapshot (Sample Data)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Flight No</th>
+                        <th>Airline</th>
+                        <th>Route</th>
+                        <th>Time</th>
+                        <th>Gate</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Arrival</td>
+                        <td><strong>AI-101</strong></td>
+                        <td>Air India</td>
+                        <td>Delhi &rarr; Hyderabad</td>
+                        <td>10:30 AM</td>
+                        <td>Gate A3</td>
+                        <td><span class="badge badge-green">On Time</span></td>
+                    </tr>
+                    <tr>
+                        <td>Departure</td>
+                        <td><strong>6E-204</strong></td>
+                        <td>IndiGo</td>
+                        <td>Hyderabad &rarr; Bengaluru</td>
+                        <td>11:15 AM</td>
+                        <td>Gate B2</td>
+                        <td><span class="badge badge-blue">Boarding</span></td>
+                    </tr>
+                    <tr>
+                        <td>Arrival</td>
+                        <td><strong>UK-832</strong></td>
+                        <td>Vistara</td>
+                        <td>Mumbai &rarr; Hyderabad</td>
+                        <td>12:00 PM</td>
+                        <td>Gate A1</td>
+                        <td><span class="badge badge-yellow">Delayed</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>AeroDB Airport Management System | College Web Development Project</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

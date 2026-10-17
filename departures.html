@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Departures - AeroDB</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="logo-area">
+            <h1>✈️ AeroDB</h1>
+            <p>Airport Management System</p>
+        </div>
+        <nav>
+            <a href="index.html">Dashboard</a>
+            <a href="arrivals.html">Arrivals</a>
+            <a href="departures.html" class="active">Departures</a>
+            <a href="jetfuel.html">Jet Fuel</a>
+            <a href="maintenance.html">Runway</a>
+            <a href="passengers.html">Passengers</a>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <!-- Form Card -->
+        <section class="card">
+            <h2>Add New Departure Flight</h2>
+            <form id="departures-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dep-flight-no">Flight Number</label>
+                        <input type="text" id="dep-flight-no" name="flight_no" placeholder="e.g. 6E-204" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dep-airline">Airline Name</label>
+                        <input type="text" id="dep-airline" name="airlines" placeholder="e.g. IndiGo" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dep-destination">Destination City</label>
+                        <input type="text" id="dep-destination" name="destination" placeholder="e.g. Bengaluru" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dep-time">Departure Date &amp; Time</label>
+                        <input type="datetime-local" id="dep-time" name="d_time" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dep-gate">Gate</label>
+                        <input type="text" id="dep-gate" name="gate" placeholder="e.g. Gate B2" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dep-status">Status</label>
+                        <select id="dep-status" name="status">
+                            <option value="On Time">On Time</option>
+                            <option value="Boarding">Boarding</option>
+                            <option value="Delayed">Delayed</option>
+                            <option value="Departed">Departed</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">Add Departure Record</button>
+            </form>
+        </section>
+
+        <!-- Table Card -->
+        <section class="card">
+            <h2>Departure Flights Schedule</h2>
+            <table id="departures-table">
+                <thead>
+                    <tr>
+                        <th>Flight No</th>
+                        <th>Airline</th>
+                        <th>Destination</th>
+                        <th>Departure Time</th>
+                        <th>Gate</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>6E-204</strong></td>
+                        <td>IndiGo</td>
+                        <td>Bengaluru</td>
+                        <td>2026-10-18 11:30</td>
+                        <td>Gate B2</td>
+                        <td><span class="badge badge-blue">Boarding</span></td>
+                        <td><button type="button" class="btn-delete" onclick="deleteRow(this)">Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td><strong>AI-408</strong></td>
+                        <td>Air India</td>
+                        <td>Dubai</td>
+                        <td>2026-10-18 13:00</td>
+                        <td>Gate A1</td>
+                        <td><span class="badge badge-green">On Time</span></td>
+                        <td><button type="button" class="btn-delete" onclick="deleteRow(this)">Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td><strong>UK-921</strong></td>
+                        <td>Vistara</td>
+                        <td>Chennai</td>
+                        <td>2026-10-18 14:15</td>
+                        <td>Gate C2</td>
+                        <td><span class="badge badge-yellow">Delayed</span></td>
+                        <td><button type="button" class="btn-delete" onclick="deleteRow(this)">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>AeroDB Airport Management System | College Web Development Project</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

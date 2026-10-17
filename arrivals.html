@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrivals - AeroDB</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="logo-area">
+            <h1>✈️ AeroDB</h1>
+            <p>Airport Management System</p>
+        </div>
+        <nav>
+            <a href="index.html">Dashboard</a>
+            <a href="arrivals.html" class="active">Arrivals</a>
+            <a href="departures.html">Departures</a>
+            <a href="jetfuel.html">Jet Fuel</a>
+            <a href="maintenance.html">Runway</a>
+            <a href="passengers.html">Passengers</a>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <!-- Form Card -->
+        <section class="card">
+            <h2>Add New Arrival Flight</h2>
+            <form id="arrivals-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="arr-flight-no">Flight Number</label>
+                        <input type="text" id="arr-flight-no" name="flight_no" placeholder="e.g. AI-101" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="arr-airline">Airline Name</label>
+                        <input type="text" id="arr-airline" name="airlines" placeholder="e.g. Air India" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="arr-origin">Origin City</label>
+                        <input type="text" id="arr-origin" name="origin" placeholder="e.g. Delhi" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="arr-time">Arrival Date &amp; Time</label>
+                        <input type="datetime-local" id="arr-time" name="a_time" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="arr-gate">Gate</label>
+                        <input type="text" id="arr-gate" name="gate" placeholder="e.g. Gate A3" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="arr-status">Status</label>
+                        <select id="arr-status" name="status">
+                            <option value="On Time">On Time</option>
+                            <option value="Delayed">Delayed</option>
+                            <option value="Landed">Landed</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">Add Arrival Record</button>
+            </form>
+        </section>
+
+        <!-- Table Card -->
+        <section class="card">
+            <h2>Arrival Flights Schedule</h2>
+            <table id="arrivals-table">
+                <thead>
+                    <tr>
+                        <th>Flight No</th>
+                        <th>Airline</th>
+                        <th>Origin</th>
+                        <th>Arrival Time</th>
+                        <th>Gate</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>AI-101</strong></td>
+                        <td>Air India</td>
+                        <td>Delhi</td>
+                        <td>2026-10-18 09:30</td>
+                        <td>Gate A3</td>
+                        <td><span class="badge badge-green">On Time</span></td>
+                        <td><button type="button" class="btn-delete" onclick="deleteRow(this)">Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td><strong>6E-452</strong></td>
+                        <td>IndiGo</td>
+                        <td>Mumbai</td>
+                        <td>2026-10-18 10:45</td>
+                        <td>Gate B1</td>
+                        <td><span class="badge badge-yellow">Delayed</span></td>
+                        <td><button type="button" class="btn-delete" onclick="deleteRow(this)">Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td><strong>UK-832</strong></td>
+                        <td>Vistara</td>
+                        <td>Bengaluru</td>
+                        <td>2026-10-18 11:15</td>
+                        <td>Gate A2</td>
+                        <td><span class="badge badge-grey">Landed</span></td>
+                        <td><button type="button" class="btn-delete" onclick="deleteRow(this)">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>AeroDB Airport Management System | College Web Development Project</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

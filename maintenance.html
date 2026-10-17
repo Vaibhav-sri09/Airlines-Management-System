@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Runway Maintenance - AeroDB</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="logo-area">
+            <h1>✈️ AeroDB</h1>
+            <p>Airport Management System</p>
+        </div>
+        <nav>
+            <a href="index.html">Dashboard</a>
+            <a href="arrivals.html">Arrivals</a>
+            <a href="departures.html">Departures</a>
+            <a href="jetfuel.html">Jet Fuel</a>
+            <a href="maintenance.html" class="active">Runway</a>
+            <a href="passengers.html">Passengers</a>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <!-- Form Card -->
+        <section class="card">
+            <h2>Add Runway Maintenance Record</h2>
+            <form id="maintenance-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="maint-id">Maintenance ID</label>
+                        <input type="text" id="maint-id" name="maint_id" placeholder="e.g. M-301" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="maint-runway">Runway Number</label>
+                        <select id="maint-runway" name="runway_no" required>
+                            <option value="">-- Select Runway --</option>
+                            <option value="RWY 09L/27R">RWY 09L/27R (Main)</option>
+                            <option value="RWY 09R/27L">RWY 09R/27L (Parallel)</option>
+                            <option value="RWY 18/36">RWY 18/36 (Crosswind)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="maint-date">Maintenance Date</label>
+                        <input type="date" id="maint-date" name="maint_date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="maint-status">Status</label>
+                        <select id="maint-status" name="status">
+                            <option value="Scheduled">Scheduled</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">Add Maintenance Record</button>
+            </form>
+        </section>
+
+        <!-- Table Card -->
+        <section class="card">
+            <h2>Runway Maintenance Schedule</h2>
+            <table id="maintenance-table">
+                <thead>
+                    <tr>
+                        <th>Maintenance ID</th>
+                        <th>Runway</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>M-201</strong></td>
+                        <td>RWY 09L/27R</td>
+                        <td>2026-10-15</td>
+                        <td><span class="badge badge-green">Completed</span></td>
+                        <td><button type="button" class="btn-delete" onclick="deleteRow(this)">Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td><strong>M-202</strong></td>
+                        <td>RWY 18/36</td>
+                        <td>2026-10-18</td>
+                        <td><span class="badge badge-yellow">In Progress</span></td>
+                        <td><button type="button" class="btn-delete" onclick="deleteRow(this)">Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td><strong>M-203</strong></td>
+                        <td>RWY 09R/27L</td>
+                        <td>2026-10-22</td>
+                        <td><span class="badge badge-blue">Scheduled</span></td>
+                        <td><button type="button" class="btn-delete" onclick="deleteRow(this)">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>AeroDB Airport Management System | College Web Development Project</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
