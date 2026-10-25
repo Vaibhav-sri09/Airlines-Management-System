@@ -8,10 +8,9 @@
 </head>
 <body>
 
-    <!-- Header & Navigation -->
     <header>
         <div class="logo-area">
-            <h1>✈️ AeroDB</h1>
+            <h1>AeroDB</h1>
             <p>Airport Management System</p>
         </div>
         <nav>
@@ -25,20 +24,18 @@
     </header>
 
     <main class="container">
-
-        <!-- Form Card -->
         <section class="card">
             <h2>Add Passenger to Manifest</h2>
             <form id="passengers-form">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="pax-id">Passenger ID</label>
-                        <input type="text" id="pax-id" name="p_id" placeholder="e.g. PAX-101" required>
+                        <input type="text" id="pax-id" name="p_id" required>
                     </div>
 
                     <div class="form-group">
                         <label for="pax-name">Passenger Name</label>
-                        <input type="text" id="pax-name" name="p_name" placeholder="e.g. Rahul Sharma" required>
+                        <input type="text" id="pax-name" name="p_name" required>
                     </div>
 
                     <div class="form-group">
@@ -55,17 +52,17 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="pax-flight">Flight Number</label>
-                        <input type="text" id="pax-flight" name="p_flight_no" placeholder="e.g. AI-101" required>
+                        <input type="text" id="pax-flight" name="p_flight_no" required>
                     </div>
 
                     <div class="form-group">
                         <label for="pax-age">Age</label>
-                        <input type="number" id="pax-age" name="p_age" min="1" max="120" placeholder="e.g. 28" required>
+                        <input type="number" id="pax-age" name="p_age" min="1" max="120" required>
                     </div>
 
                     <div class="form-group">
                         <label for="pax-nationality">Nationality</label>
-                        <input type="text" id="pax-nationality" name="p_nationality" placeholder="e.g. Indian" required>
+                        <input type="text" id="pax-nationality" name="p_nationality" required>
                     </div>
                 </div>
 
@@ -73,7 +70,6 @@
             </form>
         </section>
 
-        <!-- Table Card -->
         <section class="card">
             <h2>Registered Passengers</h2>
             <table id="passengers-table">
@@ -89,33 +85,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><strong>PAX-001</strong></td>
-                        <td>Rahul Sharma</td>
-                        <td>Male</td>
-                        <td>AI-101</td>
-                        <td>29</td>
-                        <td>Indian</td>
-                        <td><button type="button" class="btn-delete" onclick="deleteRow(this)">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td><strong>PAX-002</strong></td>
-                        <td>Priya Patel</td>
-                        <td>Female</td>
-                        <td>6E-204</td>
-                        <td>34</td>
-                        <td>Indian</td>
-                        <td><button type="button" class="btn-delete" onclick="deleteRow(this)">Delete</button></td>
-                    </tr>
                 </tbody>
             </table>
         </section>
-
     </main>
-
-    <footer>
-        <p>AeroDB Airport Management System | College Web Development Project</p>
-    </footer>
 
     <script src="script.js"></script>
 </body>

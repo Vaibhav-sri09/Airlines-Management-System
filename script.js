@@ -1,11 +1,33 @@
 function deleteRow(button) {
-    if (confirm("Are you sure you want to delete this sample record?")) {
+    if (confirm("Are you sure you want to delete this record?")) {
         button.parentElement.parentElement.remove();
     }
 }
+
+function escapeText(text) {
+    var div = document.createElement("div");
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+function val(id) {
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : "";
+}
+
+function addRow(tableSelector, html) {
+    var row = document.querySelector(tableSelector + " tbody").insertRow();
+    row.innerHTML = html + '<td><button type="button" class="btn-delete" onclick="deleteRow(this)">Delete</button></td>';
+}
+
+function getBadge(status) {
+    var map = { "Delayed": "badge-yellow", "In Progress": "badge-yellow", "Boarding": "badge-blue", "Scheduled": "badge-blue", "Landed": "badge-grey", "Departed": "badge-grey" };
+    return map[status] || "badge-green";
+}
+
 function calculateFuelCost() {
-    var qty = document.getElementById("fuel-qty").value;
-    var price = document.getElementById("fuel-price").value;
+    var qty = val("fuel-qty");
+    var price = val("fuel-price");
     var total = qty * price;
     var totalField = document.getElementById("fuel-total");
     var preview = document.getElementById("fuel-calc-preview");
@@ -16,68 +38,33 @@ function calculateFuelCost() {
 
 function handleArrivalForm(event) {
     event.preventDefault();
-    var flightNo = document.getElementById("arr-flight-no").value;
-    var airline = document.getElementById("arr-airline").value;
-    var origin = document.getElementById("arr-origin").value;
-    var time = document.getElementById("arr-time").value;
-    var gate = document.getElementById("arr-gate").value;
-    var status = document.getElementById("arr-status").value;
+    var flightNo = val("arr-flight-no"), airline = val("arr-airline"), origin = val("arr-origin"), time = val("arr-time"), gate = val("arr-gate"), status = val("arr-status");
+    if (!flightNo || !airline || !origin || !time || !gate) return alert("Please fill in all required fields.");
+    if (!/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(time)) return alert("Please enter arrival time in YYYY-MM-DD HH:MM:SS format.");
 
-    if (!flightNo || !airline || !origin || !time || !gate) {
-        alert("Please fill in all required fields.");
-        return;
-    }
-
-    var badge = status === "Delayed" ? "badge-yellow" : (status === "Landed" ? "badge-grey" : "badge-green");
-    var table = document.querySelector("#arrivals-table tbody");
-    var row = table.insertRow();
-    row.innerHTML = "<td><strong>" + flightNo + "</strong></td><td>" + airline + "</td><td>" + origin + "</td><td>" + time.replace("T", " ") + "</td><td>" + gate + "</td><td><span class='badge " + badge + "'>" + status + "</span></td><td><button type='button' class='btn-delete' onclick='deleteRow(this)'>Delete</button></td>";
-    
+    addRow("#arrivals-table", `<td><strong>${escapeText(flightNo)}</strong></td><td>${escapeText(airline)}</td><td>${escapeText(origin)}</td><td>${escapeText(time)}</td><td>${escapeText(gate)}</td><td><span class="badge ${getBadge(status)}">${status}</span></td>`);
     event.target.reset();
     alert("Arrival record added to the table.");
 }
 
 function handleDepartureForm(event) {
     event.preventDefault();
-    var flightNo = document.getElementById("dep-flight-no").value;
-    var airline = document.getElementById("dep-airline").value;
-    var destination = document.getElementById("dep-destination").value;
-    var time = document.getElementById("dep-time").value;
-    var gate = document.getElementById("dep-gate").value;
-    var status = document.getElementById("dep-status").value;
+    var flightNo = val("dep-flight-no"), airline = val("dep-airline"), destination = val("dep-destination"), time = val("dep-time"), gate = val("dep-gate"), status = val("dep-status");
+    if (!flightNo || !airline || !destination || !time || !gate) return alert("Please fill in all required fields.");
+    if (!/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(time)) return alert("Please enter departure time in YYYY-MM-DD HH:MM:SS format.");
 
-    if (!flightNo || !airline || !destination || !time || !gate) {
-        alert("Please fill in all required fields.");
-        return;
-    }
-
-    var badge = status === "Delayed" ? "badge-yellow" : (status === "Boarding" ? "badge-blue" : (status === "Departed" ? "badge-grey" : "badge-green"));
-    var table = document.querySelector("#departures-table tbody");
-    var row = table.insertRow();
-    row.innerHTML = "<td><strong>" + flightNo + "</strong></td><td>" + airline + "</td><td>" + destination + "</td><td>" + time.replace("T", " ") + "</td><td>" + gate + "</td><td><span class='badge " + badge + "'>" + status + "</span></td><td><button type='button' class='btn-delete' onclick='deleteRow(this)'>Delete</button></td>";
-    
+    addRow("#departures-table", `<td><strong>${escapeText(flightNo)}</strong></td><td>${escapeText(airline)}</td><td>${escapeText(destination)}</td><td>${escapeText(time)}</td><td>${escapeText(gate)}</td><td><span class="badge ${getBadge(status)}">${status}</span></td>`);
     event.target.reset();
     alert("Departure record added to the table.");
 }
 
 function handleFuelForm(event) {
     event.preventDefault();
-    var id = document.getElementById("fuel-id").value;
-    var flightNo = document.getElementById("fuel-flight-no").value;
-    var qty = document.getElementById("fuel-qty").value;
-    var price = document.getElementById("fuel-price").value;
-    var total = document.getElementById("fuel-total").value;
-    var date = document.getElementById("fuel-date").value;
+    var id = val("fuel-id"), flightNo = val("fuel-flight-no"), qty = val("fuel-qty"), price = val("fuel-price"), total = val("fuel-total"), date = val("fuel-date");
+    if (!id || !flightNo || !qty || !price || !total || !date) return alert("Please fill in all fuel fields.");
+    if (!/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/.test(date)) return alert("Please enter fueling time in YYYY-MM-DD HH:MM:SS format.");
 
-    if (!id || !flightNo || !qty || !price || !total || !date) {
-        alert("Please fill in all fuel fields.");
-        return;
-    }
-
-    var table = document.querySelector("#jetfuel-table tbody");
-    var row = table.insertRow();
-    row.innerHTML = "<td><strong>" + id + "</strong></td><td>" + flightNo + "</td><td>" + qty + " L</td><td>₹" + price + "</td><td><strong>₹" + total + "</strong></td><td>" + date.replace("T", " ") + "</td><td><button type='button' class='btn-delete' onclick='deleteRow(this)'>Delete</button></td>";
-    
+    addRow("#jetfuel-table", `<td><strong>${escapeText(id)}</strong></td><td>${escapeText(flightNo)}</td><td>${qty} L</td><td>₹${price}</td><td><strong>₹${total}</strong></td><td>${escapeText(date)}</td>`);
     event.target.reset();
     var preview = document.getElementById("fuel-calc-preview");
     if (preview) preview.textContent = "₹ 0.00";
@@ -86,66 +73,40 @@ function handleFuelForm(event) {
 
 function handleMaintenanceForm(event) {
     event.preventDefault();
-    var id = document.getElementById("maint-id").value;
-    var runway = document.getElementById("maint-runway").value;
-    var date = document.getElementById("maint-date").value;
-    var status = document.getElementById("maint-status").value;
+    var id = val("maint-id"), runway = val("maint-runway"), date = val("maint-date"), status = val("maint-status");
+    if (!id || !runway || !date || !status) return alert("Please fill in all maintenance fields.");
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return alert("Please enter maintenance date in YYYY-MM-DD format.");
 
-    if (!id || !runway || !date || !status) {
-        alert("Please fill in all maintenance fields.");
-        return;
-    }
-
-    var badge = status === "In Progress" ? "badge-yellow" : (status === "Completed" ? "badge-green" : "badge-blue");
-    var table = document.querySelector("#maintenance-table tbody");
-    var row = table.insertRow();
-    row.innerHTML = "<td><strong>" + id + "</strong></td><td>" + runway + "</td><td>" + date + "</td><td><span class='badge " + badge + "'>" + status + "</span></td><td><button type='button' class='btn-delete' onclick='deleteRow(this)'>Delete</button></td>";
-    
+    addRow("#maintenance-table", `<td><strong>${escapeText(id)}</strong></td><td>${runway}</td><td>${escapeText(date)}</td><td><span class="badge ${getBadge(status)}">${status}</span></td>`);
     event.target.reset();
     alert("Maintenance record added to the table.");
 }
 
 function handlePassengerForm(event) {
     event.preventDefault();
-    var id = document.getElementById("pax-id").value;
-    var name = document.getElementById("pax-name").value;
-    var gender = document.getElementById("pax-gender").value;
-    var flight = document.getElementById("pax-flight").value;
-    var age = document.getElementById("pax-age").value;
-    var nationality = document.getElementById("pax-nationality").value;
+    var id = val("pax-id"), name = val("pax-name"), gender = val("pax-gender"), flight = val("pax-flight"), age = val("pax-age"), nationality = val("pax-nationality");
+    if (!id || !name || !gender || !flight || !age || !nationality) return alert("Please fill in all passenger fields.");
 
-    if (!id || !name || !gender || !flight || !age || !nationality) {
-        alert("Please fill in all passenger fields.");
-        return;
-    }
-
-    var table = document.querySelector("#passengers-table tbody");
-    var row = table.insertRow();
-    row.innerHTML = "<td><strong>" + id + "</strong></td><td>" + name + "</td><td>" + gender + "</td><td>" + flight + "</td><td>" + age + "</td><td>" + nationality + "</td><td><button type='button' class='btn-delete' onclick='deleteRow(this)'>Delete</button></td>";
-    
+    addRow("#passengers-table", `<td><strong>${escapeText(id)}</strong></td><td>${escapeText(name)}</td><td>${gender}</td><td>${escapeText(flight)}</td><td>${age}</td><td>${escapeText(nationality)}</td>`);
     event.target.reset();
     alert("Passenger record added to the table.");
 }
 
 window.onload = function() {
-    var arr = document.getElementById("arrivals-form");
-    if (arr) arr.onsubmit = handleArrivalForm;
-
-    var dep = document.getElementById("departures-form");
-    if (dep) dep.onsubmit = handleDepartureForm;
-
-    var fuel = document.getElementById("jetfuel-form");
-    if (fuel) fuel.onsubmit = handleFuelForm;
-
-    var maint = document.getElementById("maintenance-form");
-    if (maint) maint.onsubmit = handleMaintenanceForm;
-
-    var pax = document.getElementById("passengers-form");
-    if (pax) pax.onsubmit = handlePassengerForm;
+    var forms = {
+        "arrivals-form": handleArrivalForm,
+        "departures-form": handleDepartureForm,
+        "jetfuel-form": handleFuelForm,
+        "maintenance-form": handleMaintenanceForm,
+        "passengers-form": handlePassengerForm
+    };
+    for (var formId in forms) {
+        var formEl = document.getElementById(formId);
+        if (formEl) formEl.onsubmit = forms[formId];
+    }
 
     var qty = document.getElementById("fuel-qty");
     var price = document.getElementById("fuel-price");
-    
     if (qty) qty.oninput = calculateFuelCost;
     if (price) price.oninput = calculateFuelCost;
 };
